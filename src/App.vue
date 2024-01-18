@@ -1,30 +1,65 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <Header></Header>
+  <router-view></router-view>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<script setup>
+import Header from './components/Header.vue';
+</script>
+
+<style>
+@font-face {
+  font-family: 'Google Sans';
+  src: url('./assets/fonts/google-sans/ProductSans-Black.woff2') format('woff2'),
+    url('./assets/fonts/google-sans/ProductSans-Black.woff') format('woff'),
+    url('./assets/fonts/google-sans/ProductSans-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+@font-face {
+  font-family: 'Google Sans';
+  src: url('./assets/fonts/google-sans/ProductSans-Bold.woff2') format('woff2'),
+    url('./assets/fonts/google-sans/ProductSans-Bold.woff') format('woff'),
+    url('./assets/fonts/google-sans/ProductSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+@font-face {
+  font-family: 'Google Sans';
+  src: url('./assets/fonts/google-sans/ProductSans-Light.woff2') format('woff2'),
+    url('./assets/fonts/google-sans/ProductSans-Light.woff') format('woff'),
+    url('./assets/fonts/google-sans/ProductSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Google Sans';
+  src: url('./assets/fonts/google-sans/ProductSans-Medium.woff2') format('woff2'),
+    url('./assets/fonts/google-sans/ProductSans-Medium.woff') format('woff'),
+    url('./assets/fonts/google-sans/ProductSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Google Sans';
+  src: url('./assets/fonts/google-sans/ProductSans-Regular.woff2') format('woff2'),
+    url('./assets/fonts/google-sans/ProductSans-Regular.woff') format('woff'),
+    url('./assets/fonts/google-sans/ProductSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+body {
+  font-family: 'Google Sans', sans-serif;
 }
 </style>
