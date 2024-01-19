@@ -93,6 +93,7 @@ export default {
                 alert('error')
             } else {
                 this.$store.dispatch('signup', {
+                    name: this.name,
                     email: this.email,
                     password: this.password,
                     nextRoute: '/forms',

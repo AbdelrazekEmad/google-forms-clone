@@ -1,4 +1,5 @@
 import router from "../../../router/index";
+import { useToast } from "vue-toastification";
 
 export default {
   async login(context, payload) {
@@ -18,7 +19,7 @@ export default {
     const responseData = await response.json();
 
     if (!response.ok) {
-      useToast().error(responseData.error_description || "failed to Login, please try again later");
+      useToast().error(responseData.error_description || responseData.msg || "failed to Login, please try again later");
     } else {
       context.commit("setUser", {
         token: responseData.access_token,
@@ -30,7 +31,7 @@ export default {
   },
 
   async signup(context, payload) {
-    const response = await fetch("https://ktorrviyvwyrxedybheg.supabase.co/auth/v1/signup", {
+    const signUpAuth = await fetch("https://ktorrviyvwyrxedybheg.supabase.co/auth/v1/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,17 +43,39 @@ export default {
       }),
     });
 
-    const responseData = await response.json();
+    const signUpAuthData = await signUpAuth.json();
 
-    if (!response.ok) {
-      useToast().error(responseData.error_description || "failed to Login, please try again later");
+    if (!signUpAuth.ok) {
+      useToast().error(signUpAuthData.error_description || signUpAuthData.msg || "failed to Login, please try again later");
     } else {
-      context.commit("setUser", {
-        token: responseData.access_token,
-        userId: responseData.user.id,
-        tokenExpiration: responseData.expires_in,
+      const user = await fetch("https://ktorrviyvwyrxedybheg.supabase.co/rest/v1/users", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0b3Jydml5dnd5cnhlZHliaGVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDUwNTI4MjQsImV4cCI6MjAyMDYyODgyNH0.jO5rxpuMOw6E7GTK9nUeuoMFZnox9c9aN_eTd6qcmSo",
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0b3Jydml5dnd5cnhlZHliaGVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDUwNTI4MjQsImV4cCI6MjAyMDYyODgyNH0.jO5rxpuMOw6E7GTK9nUeuoMFZnox9c9aN_eTd6qcmSo`,
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          user_id: signUpAuthData.user.id,
+          user_name: payload.name,
+          user_email: payload.email,
+          user_avatar: null,
+        }),
       });
-      router.replace(payload.nextRoute);
+
+      if (!user.ok) {
+        useToast().error(signUpAuthDataUser.error_description || signUpAuthDataUser.msg || "failed to Login, please try again later");
+      } else {
+        context.commit("setUser", {
+          token: signUpAuthData.access_token,
+          tokenExpiration: signUpAuthData.expires_in,
+          userId: signUpAuthData.user.id,
+          userName: payload.name,
+          userEmail: payload.email,
+        });
+        router.replace(payload.nextRoute);
+      }
     }
   },
 

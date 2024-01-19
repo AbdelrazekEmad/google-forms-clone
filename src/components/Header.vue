@@ -2,7 +2,7 @@
     <header>
         <v-container>
             <div class="header__wrapper">
-                <router-link to="/">
+                <router-link :to="isLogedin ? '/' : 'about'">
                     <h1>Google Forms</h1>
                 </router-link>
                 <div class="buttons" v-if="!isLogedin">
@@ -18,7 +18,7 @@
                     </router-link>
                 </div>
                 <div class="" v-else>
-                    {{ userId }}
+                    {{ userName }}
                     <v-btn variant="tonal" @click="logout">
                         Logout
                     </v-btn>
@@ -41,8 +41,8 @@ export default {
         isLogedin() {
             return this.$store.getters.isAuthenticated;
         },
-        userId() {
-            return this.$store.getters.userIdd;
+        userName() {
+            return this.$store.getters.userName;
         }
     },
 }

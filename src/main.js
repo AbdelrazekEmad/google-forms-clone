@@ -23,6 +23,7 @@ app.use(Toast, {
   maxToasts: 20,
   newestOnTop: true,
 });
+
 app.use(vuetify);
 app.use(router);
 app.use(store);

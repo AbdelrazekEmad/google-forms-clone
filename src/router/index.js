@@ -7,6 +7,7 @@ import SignUp from "../components/Login/SignUp.vue";
 import LandingPage from "../components/LandingPage.vue";
 import NotFound from "../pages/NotFound.vue";
 import formsList from "../pages/forms/Forms.vue";
+import SingleForm from "../pages/forms/SingleForm.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -15,10 +16,16 @@ const router = createRouter({
     {
       path: "/",
       component: formsList,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/about",
       component: LandingPage,
+      meta: {
+        requiresUnauth: true,
+      },
     },
     {
       path: "/login",
@@ -40,6 +47,12 @@ const router = createRouter({
       meta: {
         requiresAuth: true,
       },
+      children: [
+        {
+          path: "item",
+          component: SingleForm,
+        },
+      ],
     },
     {
       path: "/:notFound(.*)",
