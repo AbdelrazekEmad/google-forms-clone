@@ -17,7 +17,10 @@
                         </v-btn>
                     </router-link>
                 </div>
-                <div class="" v-else>
+                <div class="d-flex align-center ga-3" v-else>
+                    <div class="user__img">
+                        <img :src="userAvatar" alt="">
+                    </div>
                     {{ userName }}
                     <v-btn variant="tonal" @click="logout">
                         Logout
@@ -33,7 +36,7 @@ export default {
     name: 'Header',
     methods: {
         logout() {
-            this.$store.dispatch('logout');
+            this.$store.dispatch('logout')
             this.$router.replace('/login');
         }
     },
@@ -43,7 +46,10 @@ export default {
         },
         userName() {
             return this.$store.getters.userName;
-        }
+        },
+        userAvatar() {
+            return this.$store.getters.userAvatar;
+        },
     },
 }
 </script>
@@ -72,6 +78,19 @@ header {
         display: flex;
         align-items: center;
         gap: 10px;
+    }
+
+    .user__img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 }
 </style>

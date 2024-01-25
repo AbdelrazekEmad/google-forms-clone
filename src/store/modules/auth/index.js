@@ -10,6 +10,7 @@ export default {
       tokenExpiration: null,
       userName: "",
       userEmail: "",
+      userAvatar: null,
     };
   },
   mutations,

@@ -8,6 +8,7 @@ import LandingPage from "../components/LandingPage.vue";
 import NotFound from "../pages/NotFound.vue";
 import formsList from "../pages/forms/Forms.vue";
 import SingleForm from "../pages/forms/SingleForm.vue";
+import PreviewForm from "../pages/forms/PreviewForm.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -47,12 +48,20 @@ const router = createRouter({
       meta: {
         requiresAuth: true,
       },
-      children: [
-        {
-          path: "item",
-          component: SingleForm,
-        },
-      ],
+    },
+    {
+      path: "/forms/:formId/edit",
+      component: SingleForm,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/forms/:formId/preview",
+      component: PreviewForm,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/:notFound(.*)",

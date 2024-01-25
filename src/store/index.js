@@ -2,12 +2,12 @@ import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
 // importing the modules
-import requestsModule from "./modules/requests/index.js";
+import formsModule from "./modules/forms/index.js";
 import authModule from "./modules/auth/index.js";
 
 const store = createStore({
   modules: {
-    requests: requestsModule,
+    forms: formsModule,
     auth: authModule,
   },
   state: {},

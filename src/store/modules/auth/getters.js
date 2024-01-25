@@ -8,6 +8,9 @@ export default {
   userName(state) {
     return state.userName;
   },
+  userAvatar(state) {
+    return state.userAvatar;
+  },
   isAuthenticated(state) {
     return !!state.token;
   },

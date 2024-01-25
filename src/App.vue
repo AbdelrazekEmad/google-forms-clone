@@ -8,6 +8,10 @@ import Header from './components/Header.vue';
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: 'Google Sans';
   src: url('./assets/fonts/google-sans/ProductSans-Black.woff2') format('woff2'),

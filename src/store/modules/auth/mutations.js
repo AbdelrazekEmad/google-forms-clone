@@ -5,5 +5,6 @@ export default {
     state.userId = payload.userId;
     state.userName = payload.userName;
     state.userEmail = payload.userEmail;
+    state.userAvatar = payload.userAvatar;
   },
 };
